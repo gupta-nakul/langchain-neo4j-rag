@@ -12,6 +12,7 @@ dependencies = [
     "openai==1.7.2",
     "opentelemetry-api==1.22.0",
     "pydantic==2.5.1",
+    "httpx==0.27.2",
     "uvicorn==0.25.0"
 ]
 
