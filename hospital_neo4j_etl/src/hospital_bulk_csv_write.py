@@ -10,6 +10,7 @@ PHYSICIANS_CSV_PATH = os.getenv("PHYSICIANS_CSV_PATH")
 PATIENTS_CSV_PATH = os.getenv("PATIENTS_CSV_PATH")
 VISITS_CSV_PATH = os.getenv("VISITS_CSV_PATH")
 REVIEWS_CSV_PATH = os.getenv("REVIEWS_CSV_PATH")
+EXAMPLE_CYPHER_CSV_PATH = os.getenv("EXAMPLE_CYPHER_CSV_PATH")
 
 NEO4J_URI = os.getenv("NEO4J_URI")
 NEO4J_USERNAME = os.getenv("NEO4J_USERNAME")
@@ -23,7 +24,7 @@ logging.basicConfig(
 
 LOGGER = logging.getLogger(__name__)
 
-NODES = ["Hospital", "Payer", "Physician", "Patient", "Visit", "Review"]
+NODES = ["Hospital", "Payer", "Physician", "Patient", "Visit", "Review", "Question"]
 
 
 def _set_uniqueness_constraints(tx, node):
@@ -132,6 +133,18 @@ def load_hospital_graph_from_csv() -> None:
                         }});
         """
         _ = session.run(query, {})
+
+    LOGGER.info("Loading question nodes")
+    with driver.session(database="neo4j") as session:
+        query = f"""
+        LOAD CSV WITH HEADERS
+        FROM '{EXAMPLE_CYPHER_CSV_PATH}' AS questions
+        MERGE (Q:Question {{
+                         question: questions.question,
+                         cypher: questions.cypher
+                        }});
+        """
+        _ = session.run(query, {})        
 
     LOGGER.info("Loading 'AT' relationships")
     with driver.session(database="neo4j") as session:
