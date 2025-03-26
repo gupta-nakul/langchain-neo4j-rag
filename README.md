@@ -1,4 +1,4 @@
-# Hospital RAG Chatbot with LangChain & Neo4j
+# RAG with LangChain & Neo4j
 
 Welcome to the **Hospital RAG Chatbot** repository! This project showcases a Retrieval-Augmented Generation (RAG) chatbot that uses LangChain for orchestration and Neo4j for data storage and vector indexing. The chatbot is designed to answer questions about patient experiences (unstructured data) and hospital system details (structured data), all in a single conversation interface.
 
@@ -39,8 +39,8 @@ This chatbot applies modern **RAG techniques** for question-answering over both 
 
 1. **Clone this repository**:
    ```bash
-   git clone https://github.com/gupta-nakul/langchain-neo4j-rag-chatbot.git
-   cd langchain-neo4j-rag-chatbot
+   git clone https://github.com/gupta-nakul/langchain-neo4j-rag.git
+   cd langchain-neo4j-rag
    ```
 
 2. **Create your `.env` file** in the root directory. Use the variables described in [Configuration](#configuration).
